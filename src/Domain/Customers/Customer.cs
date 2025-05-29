@@ -5,7 +5,8 @@ namespace Domain.Customers
 {
     public sealed class Customer : AggregateRoot
     {
-        public Customer(CustomerId id, string name, string lastName, string email, PhoneNumber phoneNumber, Address address, bool active)
+        public Customer(CustomerId id, string name, string lastName, string email,
+            PhoneNumber phoneNumber, Address address, bool active)
         {
             Id = id;
             Name = name;
@@ -29,5 +30,10 @@ namespace Domain.Customers
         public PhoneNumber PhoneNumber { get; private set; }
         public Address Address { get; private set; }
         public bool Active { get; set; }
+
+        public static Customer UpdateCustomer(Guid id, string name, string lastName, string email, PhoneNumber phoneNumber, Address address, bool active)
+        {
+            return new Customer(new CustomerId(id), name, lastName, email, phoneNumber, address, active);
+        }
     }
 }
